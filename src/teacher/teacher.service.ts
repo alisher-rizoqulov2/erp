@@ -14,8 +14,6 @@ export class TeacherService {
   async create(createTeacherDto: CreateTeacherDto) {
     const { email, new_password, confirm_password } = createTeacherDto;
     if (new_password !== confirm_password) {
-      console.log(new_password);
-      console.log(confirm_password);
       throw new BadRequestException("Parollar mos emas");
     }
     const existingAdmin = await this.teacherRepo.findOne({ where: { email } });

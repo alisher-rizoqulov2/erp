@@ -6,6 +6,10 @@ import { AuthModule } from './auth/auth.module';
 import { TeacherModule } from './teacher/teacher.module';
 import { Teacher } from "./teacher/entities/teacher.entity";
 import { ConfigModule } from "@nestjs/config";
+import { StudentsModule } from './students/students.module';
+import { CoursesModule } from './courses/courses.module';
+import { Student } from "./students/entities/student.entity";
+import { Course } from "./courses/entities/course.entity";
 
 @Module({
   imports: [
@@ -17,12 +21,14 @@ import { ConfigModule } from "@nestjs/config";
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      entities: [Admin, Teacher],
+      entities: [Admin, Teacher,Student,Course],
       synchronize: true,
     }),
     AdminModule,
     AuthModule,
     TeacherModule,
+    StudentsModule,
+    CoursesModule,
   ],
   controllers: [],
   providers: [],
