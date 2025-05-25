@@ -10,8 +10,9 @@ export class CoursesService {
   constructor(
     @InjectRepository(Course) private readonly courseRepo: Repository<Course>
   ) {}
-  create(createCourseDto: CreateCourseDto) {
-    return this.courseRepo.create(createCourseDto);
+  async create(createCourseDto: CreateCourseDto) {
+    const course= this.courseRepo.create(createCourseDto);
+    return await this.courseRepo.save(course)
   }
 
   findAll() {

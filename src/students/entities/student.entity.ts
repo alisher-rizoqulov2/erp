@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { StudentGroup } from "../../student_groups/entities/student_group.entity";
 
 export enum GenderRole {
   MALE = "MALE",
@@ -25,10 +26,13 @@ export class Student {
     enum: GenderRole,
   })
   role: GenderRole;
-  @Column({default:""})
+  @Column({ default: "" })
   hashed_refresh_token: string;
   @Column()
-  date_of_birth:Date
+  date_of_birth: Date;
   @Column()
-  avatar_url:string
+  avatar_url: string;
+
+  @OneToMany(() => StudentGroup, (studentGroup) => studentGroup.student)
+  student: StudentGroup[];
 }

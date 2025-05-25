@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Group } from "../../groups/entities/group.entity";
 
 @Entity()
 export class Course {
@@ -16,4 +17,7 @@ export class Course {
   lessons_in_a_week: number;
   @Column()
   lesson_duration: number;
+
+  @OneToMany(() => Group, (group) => group.course)
+  groups: Group[];
 }
